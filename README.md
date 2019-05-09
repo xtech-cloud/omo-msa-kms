@@ -84,8 +84,6 @@ export KMS_MYSQL_DATABASE=kms
 | appkey | string | 应用识别码|
 | appsecret | string | 应用密钥 |
 
-**备注** 
-
 ### `/kms/app/query`
 
 **简要描述:**
@@ -133,8 +131,6 @@ export KMS_MYSQL_DATABASE=kms
 | Proafile| string | 简介|
 | CreatedAt| string | 应用创建时间|
 
-**备注** 
-
 ### `/kms/app/list`
 
 **简要描述:**
@@ -170,8 +166,6 @@ export KMS_MYSQL_DATABASE=kms
 |:-----  |:-----|:-----|
 | Applications| string[] | 应用名列表|
 
-**备注** 
-
 ### `/kms/app/modify/profile`
 
 **简要描述:**
@@ -200,11 +194,6 @@ export KMS_MYSQL_DATABASE=kms
     }
 }
 ```
-
-**返回参数说明**
-
-
-**备注** 
 
 ## key 
 
@@ -247,8 +236,6 @@ export KMS_MYSQL_DATABASE=kms
 |参数名|类型|说明|
 |:-----  |:-----|:-----|
 | keys | string[] |生成的激活码列表|
-
-**备注** 
 
 
 ### `/kms/key/query`
@@ -296,8 +283,8 @@ export KMS_MYSQL_DATABASE=kms
 | Expiry| string |有效期（天），0代表永久有效|
 | Number | string |激活码|
 | Status| string |自定义的激活码状态，非0代表激活码无法激活|
-
-**备注** 
+| Storage| string |自定义数据字段|
+| Active| string[] |已经激活的设备|
 
 ### `/kms/key/list`
 
@@ -334,8 +321,6 @@ export KMS_MYSQL_DATABASE=kms
 |:-----  |:-----|:-----|
 | Keys | string[] |激活码列表|
 
-**备注** 
-
 ### `/kms/key/modify/profile`
 
 **简要描述:**
@@ -364,11 +349,6 @@ export KMS_MYSQL_DATABASE=kms
     }
 }
 ```
-
-**返回参数说明**
-
-
-**备注** 
 
 ### `/kms/key/modify/status`
 
@@ -399,11 +379,6 @@ export KMS_MYSQL_DATABASE=kms
 }
 ```
 
-**返回参数说明**
-
-
-**备注** 
-
 ### `/kms/key/activate`
 
 **简要描述:**
@@ -429,6 +404,8 @@ export KMS_MYSQL_DATABASE=kms
     "code":0,
     "message":"",
     "data":{
+        "uid":"923d2d4092a4e5a22ea39767c1407cec",
+        "license":"key:\n13bb262e2c7a425008e641748eb4741a\ncode:\nPAJ2392323\ntimestamp:\n1557394406\nexpiry:\n0\nstorage:\n{\"company\":\"wawawa\"}\ncer:\namdLTExQCLqhRQS5wkQZIUvM4i4b_W35pgYStVDuzTjjDTutkARTFC9Hu1ApToaQWmrZ2bdp0Se6ogevOLFF7Ukd_1z8GSX4pu9VhLq5JQajqHftZFgnt6vnfXkZg0vGNkoJ23PqPGw__qH48vlCyaEtXK5ipIK5iPcSrYTjnbDn4krkhXPlMZ2yGDORc4LuPe8ZRZF46dilHZ_NMRUYJzddHnl69ttmk-vdo1QGDu9BxqUQeuMs7sLyxMDXxwmvOr2-n7a6pkx2Gv0OdmYkyt9GvAnW_dIR7G5_l1NXXYWRTmla4xL6RQTvWi-vr9aY_e0zRrlfrtvGqUjiJmdCnjCxG_gHBwYZT5wFia3jEgM2_rQg6gWjwEWrsaAlZ4NOBH52favXNbH1t331_QM_8DJB8XfPQF0sxpNIv7dHrZGF7i-lLsRuEVH-NvzgM7jaYjME-3mIVbNuwSWVgATPYPfvLMU6NGuooTy6XecmCAeFOdCrCdPGCWbNddwkJY8tBeuIgytP2j2wntSF7lnNiQ11efgcrf0mWsF7BtU6W8laQ2nP62-EGzh59NBGGXZLDUMFb4YDdu37Kf77VVl9q9bdc-Kz5vZxrZrqj1Wt-uc=\nsig:\nVIlE4Y0hu0NW8ekgioOpCXu0qAlXN8RHkILckLW1jS3LNUEH8jIrq5w7E4RiQLniaZX1wTHa3MjQCjuF4aiFp2v0pwTjMr8-iQWrHrL5vIhqbBmjSWynNdm93sQawSh_by7xFGpm0QW2sP5FBEdhyJjwcjQAAcTrVgJS9-07xb-i3rj1l8CALv2JULjXhMjg5gfTGf9vuR397IvlWjdLgm15cdtYbhf5x4jX431pESI7GvXlXW0MYxcWLmIwTWa9CvR8ygV8dcnH-__HC3H4pbu9PeI-P9TOlGAkPmN-odUvvnk2tAfi6t4cp70RpYLjV2oINEL4PR0tg7oJ1OXWUw=="
     }
 }
 ```
@@ -468,7 +445,7 @@ export KMS_MYSQL_DATABASE=kms
 |参数名|必选|类型|说明|
 |:----    |:---|:--- |:---   |
 |uid|是  |string |授权文件ID|
-|license|是  |string |授权文件内容|
+|code|是  |string |设备码|
 
 **返回示例**
 
