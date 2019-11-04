@@ -95,3 +95,14 @@ func UpdateAppProfile(_appname string, _profile string) error {
 	err = db.Model(&model.Application{}).Where("app_name= ?", _appname).Update("profile", _profile).Error
 	return err
 }
+
+func UpdateAppRSA(_appname string, _privateKey string, _publicKey string) error {
+	db, err := model.OpenDB()
+	if nil != err {
+		return err
+	}
+	defer model.CloseDB(db)
+
+	err = db.Model(&model.Application{}).Where("app_name= ?", _appname).Updates(model.Application{PublicKey: _publicKey, PrivateKey: _privateKey}).Error
+	return err
+}

@@ -42,9 +42,8 @@ func AutoMigrateDatabase() {
 			panic("KMS_SQLITE_FILEPATH not found")
 		}
 	}
-
 	if "mysql" == dialectName {
-		dialectArgs = fmt.Sprintf("%s:%s@%s/%s?charset=utf8&parseTime=True&loc=Local", mysql_user, mysql_passwd, mysql_addr, mysql_database)
+		dialectArgs = fmt.Sprintf("%s:%s@(%s)/%s?charset=utf8&parseTime=True", mysql_user, mysql_passwd, mysql_addr, mysql_database)
 	} else if "sqlite3" == dialectName {
 		dialectArgs = sqlite_filepath
 	}
