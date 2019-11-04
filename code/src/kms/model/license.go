@@ -11,5 +11,5 @@ type License struct {
 }
 
 func (License) TableName() string {
-	return "license"
+	return "kms_license"
 }

@@ -14,5 +14,5 @@ type Key struct {
 }
 
 func (Key) TableName() string {
-	return "key"
+	return "kms_key"
 }
