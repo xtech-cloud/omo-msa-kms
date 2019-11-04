@@ -260,7 +260,7 @@ func HandleActivateKey(_context *gin.Context) {
 			return
 		}
 
-		if key.Capacity >= count {
+		if count >= key.Capacity {
 			renderCustomError(_context, 3, errors.New("not allow at full capacity"))
 			return
 		}
