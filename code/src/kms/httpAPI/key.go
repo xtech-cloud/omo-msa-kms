@@ -109,6 +109,7 @@ func HandleQueryKey(_context *gin.Context) {
 		"Storage":   key.Storage,
 		"AppName":   key.AppName,
 		"Status":    key.Status,
+		"Profile":	 key.Profile,
 		"CreatedAt": key.GModel.CreatedAt.String(),
 		"Active":    codes,
 	})
@@ -270,9 +271,7 @@ func HandleActivateKey(_context *gin.Context) {
 			renderModuleError(_context, err)
 			return
 		}
-	}
-
-	if nil != err {
+	} else if nil != err {
 		renderModuleError(_context, err)
 		return
 	}

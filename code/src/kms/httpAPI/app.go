@@ -104,21 +104,23 @@ func HandleModifyAppProfile(_context *gin.Context) {
 	renderOK(_context, gin.H{})
 }
 
-type ModifyAppRSARequest struct {
+type ModifyAppSecurityRequest struct {
 	AppName string `json:"appname" binding:"required"`
-	PrivateKey string `json:"privateKey" binding:"required"`
-	PublicKey string `json:"publicKey" binding:"required"`
+	AppKey string `json:"appkey" binding:"required"`
+	AppSecret string `json:"appsecret" binding:"required"`
+	PrivateKey string `json:"privatekey" binding:"required"`
+	PublicKey string `json:"publickey" binding:"required"`
 }
 
-func HandleModifyAppRSA(_context *gin.Context) {
-	var req ModifyAppRSARequest
+func HandleModifyAppSecurity(_context *gin.Context) {
+	var req ModifyAppSecurityRequest
 	err := _context.ShouldBindJSON(&req)
 	if nil != err {
 		renderBadError(_context, err)
 		return
 	}
 
-	err = dao.UpdateAppRSA(req.AppName, req.PrivateKey, req.PublicKey)
+	err = dao.UpdateAppSecurity(req.AppName, req.AppKey, req.AppSecret, req.PrivateKey, req.PublicKey)
 	if nil != err {
 		renderModuleError(_context, err)
 		return

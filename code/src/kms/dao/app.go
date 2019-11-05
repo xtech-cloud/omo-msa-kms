@@ -96,13 +96,14 @@ func UpdateAppProfile(_appname string, _profile string) error {
 	return err
 }
 
-func UpdateAppRSA(_appname string, _privateKey string, _publicKey string) error {
+func UpdateAppSecurity(_appname string, _appKey string, _appSecret string, _privateKey string, _publicKey string) error {
 	db, err := model.OpenDB()
 	if nil != err {
 		return err
 	}
 	defer model.CloseDB(db)
 
-	err = db.Model(&model.Application{}).Where("app_name= ?", _appname).Updates(model.Application{PublicKey: _publicKey, PrivateKey: _privateKey}).Error
+	err = db.Model(&model.Application{}).Where("app_name= ?", _appname).Updates(model.Application{
+		AppKey: _appKey, AppSecret: _appSecret, PublicKey: _publicKey, PrivateKey: _privateKey}).Error
 	return err
 }

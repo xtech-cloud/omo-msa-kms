@@ -29,7 +29,7 @@ func main() {
 	router.POST("/kms/app/create", httpAPI.HandleCreateApp)
 	router.POST("/kms/app/query", httpAPI.HandleQueryApp)
 	router.POST("/kms/app/list", httpAPI.HandleListApp)
-	router.POST("/kms/app/modify/rsa", httpAPI.HandleModifyAppRSA)
+	router.POST("/kms/app/modify/security", httpAPI.HandleModifyAppSecurity)
 	router.POST("/kms/app/modify/profile", httpAPI.HandleModifyAppProfile)
 	router.POST("/kms/key/generate", httpAPI.HandleGenerateKey)
 	router.POST("/kms/key/query", httpAPI.HandleQueryKey)

@@ -195,6 +195,40 @@ export KMS_MYSQL_DATABASE=kms
 }
 ```
 
+### `/kms/app/modify/security`
+
+**简要描述:**
+
+- 更改简介
+  
+**请求方式：**
+
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:----    |:---|:--- |:---   |
+|appname | 是| string | 应用名|
+|appkey| | string |应用识别码 |
+|appsecret| | string | 应用密钥 |
+|publickey| | string | 公钥|
+|privatekey| | string | 私钥|
+
+
+**返回示例**
+
+```json
+{
+    "code":0,
+    "message":"",
+    "data":{
+    }
+}
+```
+
+
+
 ## key 
 
 ### `/kms/key/generate`
