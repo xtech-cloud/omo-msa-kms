@@ -505,3 +505,44 @@ export KMS_MYSQL_DATABASE=kms
 | :--- | :--- |
 | 1 | 设备码不匹配|
 
+### `/kms/license/fetch`
+
+**简要描述:**
+
+- 获取授权证书
+  
+**请求方式：**
+
+- POST 
+
+**参数：** 
+
+|参数名|必选|类型|说明|
+|:----    |:---|:--- |:---   |
+|code|是  |string |设备码|
+
+**返回示例**
+
+```json
+{
+    "code": 0,
+    "message": "",
+    "data": {
+        "license":"key:\n13bb262e2c7a425008e641748eb4741a\ncode:\nPAJ2392323\ntimestamp:\n1557394406\nexpiry:\n0\nstorage:\n{\"company\":\"wawawa\"}\ncer:\namdLTExQCLqhRQS5wkQZIUvM4i4b_W35pgYStVDuzTjjDTutkARTFC9Hu1ApToaQWmrZ2bdp0Se6ogevOLFF7Ukd_1z8GSX4pu9VhLq5JQajqHftZFgnt6vnfXkZg0vGNkoJ23PqPGw__qH48vlCyaEtXK5ipIK5iPcSrYTjnbDn4krkhXPlMZ2yGDORc4LuPe8ZRZF46dilHZ_NMRUYJzddHnl69ttmk-vdo1QGDu9BxqUQeuMs7sLyxMDXxwmvOr2-n7a6pkx2Gv0OdmYkyt9GvAnW_dIR7G5_l1NXXYWRTmla4xL6RQTvWi-vr9aY_e0zRrlfrtvGqUjiJmdCnjCxG_gHBwYZT5wFia3jEgM2_rQg6gWjwEWrsaAlZ4NOBH52favXNbH1t331_QM_8DJB8XfPQF0sxpNIv7dHrZGF7i-lLsRuEVH-NvzgM7jaYjME-3mIVbNuwSWVgATPYPfvLMU6NGuooTy6XecmCAeFOdCrCdPGCWbNddwkJY8tBeuIgytP2j2wntSF7lnNiQ11efgcrf0mWsF7BtU6W8laQ2nP62-EGzh59NBGGXZLDUMFb4YDdu37Kf77VVl9q9bdc-Kz5vZxrZrqj1Wt-uc=\nsig:\nVIlE4Y0hu0NW8ekgioOpCXu0qAlXN8RHkILckLW1jS3LNUEH8jIrq5w7E4RiQLniaZX1wTHa3MjQCjuF4aiFp2v0pwTjMr8-iQWrHrL5vIhqbBmjSWynNdm93sQawSh_by7xFGpm0QW2sP5FBEdhyJjwcjQAAcTrVgJS9-07xb-i3rj1l8CALv2JULjXhMjg5gfTGf9vuR397IvlWjdLgm15cdtYbhf5x4jX431pESI7GvXlXW0MYxcWLmIwTWa9CvR8ygV8dcnH-__HC3H4pbu9PeI-P9TOlGAkPmN-odUvvnk2tAfi6t4cp70RpYLjV2oINEL4PR0tg7oJ1OXWUw=="
+    }
+} 
+```
+
+**返回参数说明** 
+
+|参数名|类型|说明|
+|:-----  |:-----|:-----|
+|license|string| 授权文件内容|
+
+**备注** 
+
+| 错误码| 说明 |
+| :--- | :--- |
+| 1 | 设备码不匹配|
+| 2 | 证书状态错误 |
+
