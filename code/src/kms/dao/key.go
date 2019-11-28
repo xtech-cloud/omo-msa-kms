@@ -32,6 +32,20 @@ func QueryKey(_number string) (*model.Key, error) {
 	return &key, err
 }
 
+func FindKey(_appname string, _number string) (*model.Key, error) {
+	db, err := model.OpenDB()
+	if nil != err {
+		return nil, err
+	}
+	defer model.CloseDB(db)
+
+	key := model.Key{}
+
+	err = db.Where("number = ? AND app_name = ?", _number, _appname).Order("Updated_At").First(&key).Error
+	return &key, err
+}
+
+
 func ListKey(_appname string) ([]*model.Key, error) {
 	db, err := model.OpenDB()
 	if nil != err {

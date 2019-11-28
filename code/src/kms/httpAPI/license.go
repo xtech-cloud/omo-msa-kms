@@ -44,6 +44,7 @@ func HandleVerifyLicense(_context *gin.Context) {
 }
 
 type FetchLicenseRequest struct {
+	AppName string `json:"appname" binding:"required"`
 	Code string `json:"code" binding:"required"`
 }
 
@@ -68,7 +69,7 @@ func HandleFetchLicense(_context *gin.Context) {
 
 	license := licenses[0]
 
-	key, err := dao.QueryKey(license.Number)
+	key, err := dao.FindKey(req.AppName, license.Number)
 	if nil != err {
 		renderModuleError(_context, err)
 		return
