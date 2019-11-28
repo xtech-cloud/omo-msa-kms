@@ -1,6 +1,7 @@
 package httpAPI
 
 import (
+	"fmt"
 	"errors"
 	"kms/dao"
 
@@ -39,5 +40,46 @@ func HandleVerifyLicense(_context *gin.Context) {
 
 	renderOK(_context, gin.H{
 		"status": key.Status,
+	})
+}
+
+type FetchLicenseRequest struct {
+	Code string `json:"code" binding:"required"`
+}
+
+func HandleFetchLicense(_context *gin.Context) {
+	var req FetchLicenseRequest
+	err := _context.ShouldBindJSON(&req)
+	if nil != err {
+		renderBadError(_context, err)
+		return
+	}
+
+	licenses, err := dao.FindLicense(req.Code)
+	if nil != err {
+		renderModuleError(_context, err)
+		return
+	}
+
+	if len(licenses) < 1 {
+		renderCustomError(_context, 1, errors.New("not found"))
+		return
+	}
+
+	license := licenses[0]
+
+	key, err := dao.QueryKey(license.Number)
+	if nil != err {
+		renderModuleError(_context, err)
+		return
+	}
+
+	if key.Status > 0 {
+		renderCustomError(_context, 2, errors.New(fmt.Sprintf("status: %v", key.Status)))
+		return
+	}
+
+	renderOK(_context, gin.H{
+		"license": license.License,
 	})
 }

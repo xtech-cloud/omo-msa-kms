@@ -38,6 +38,7 @@ func main() {
 	router.POST("/kms/key/modify/status", httpAPI.HandleModifyKeyStatus)
 	router.POST("/kms/key/activate", httpAPI.HandleActivateKey)
 	router.POST("/kms/license/verify", httpAPI.HandleVerifyLicense)
+	router.POST("/kms/license/fetch", httpAPI.HandleFetchLicense)
 
 	go router.Run(httpAddrArg)
 

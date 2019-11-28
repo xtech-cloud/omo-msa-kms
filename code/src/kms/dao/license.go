@@ -46,6 +46,20 @@ func FilterLicense(_number string) ([]*model.License, error) {
 	return licenses, err
 }
 
+func FindLicense(_code string) ([]*model.License, error) {
+	db, err := model.OpenDB()
+	if nil != err {
+		return nil, err
+	}
+	defer model.CloseDB(db)
+
+	licenses := make([]*model.License, 0)
+
+	err = db.Where("code = ?", _code).Order("Updated_At desc").Find(&licenses).Error
+	return licenses, err
+}
+
+
 func CountKey(_number string) (int, error) {
 	db, err := model.OpenDB()
 	if nil != err {
